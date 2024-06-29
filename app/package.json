@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "triangle-quickstarter",
   "type": "module",
   "scripts": {
