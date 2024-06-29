@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@localzet/triangle",
   "version": "0.0.0",
   "type": "module",
