@@ -1,4 +1,8 @@
-# Triangle-Vue - Многоцелевой шаблон веб-приложения
+<p align="center"><a href="#"><img src="https://static.zorin.space/media/logos/ZorinProjectsSP.svg" alt="Image"></a></p>
+
+# Triangle-Vue - Шаблон веб-приложения
+[![](https://img.shields.io/github/v/release/localzet/Triangle.svg?label=%D0%92%D0%B5%D1%80%D1%81%D0%B8%D1%8F)](https://github.com/localzet/Triangle/releases)
+[![](https://img.shields.io/badge/license-AGPL%20V3-blue.svg?longCache=true&label=%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 ## ▶️ Начало работы
 
@@ -29,11 +33,10 @@ corepack enable
 corepack prepare pnpm@latest --activate
 ```
 
-> _corepack устанавливается с node начиная с **v16.13.x**, если ваша версия ниже, установите его с помощью: `npm install -g corepack`_
-
-Чтобы настроить шаблон и начать установку зависимостей проекта, выполните:
+Чтобы загрузить шаблон и начать установку зависимостей проекта, выполните:
 
 ```bash
+bash <(curl -Ls https://raw.githubusercontent.com/localzet/Triangle/master/install.sh)
 pnpm install
 ```
 
