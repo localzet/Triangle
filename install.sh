@@ -6,11 +6,11 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 function LOGE() {
-    echo -e "${red} $* ${plain}"
+    echo -e "${red}$*${plain}"
 }
 
 function LOGI() {
-    echo -e "${green} $* ${plain}"
+    echo -e "${green}$*${plain}"
 }
 
 cur_dir=$(pwd)
