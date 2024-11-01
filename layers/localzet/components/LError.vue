@@ -31,7 +31,7 @@ const app = useAppConfig()
 const handleError = () => clearError({ redirect: '/' })
 const retry = () => clearError()
 
-// Show/hide demo stack trace
+// Show/hide stack trace
 const showStackTrace = ref(true)
 </script>
 
