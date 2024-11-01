@@ -1,9 +1,23 @@
 {
-  "private": false,
   "name": "@localzet/triangle",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "./nuxt.config.ts",
+  "keywords": ["localzet", "triangle", "nuxt", "vue"],
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "Ivan Zorin",
+    "email": "creator@localzet.com",
+    "url": "https://github.com/localzet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/localzet/Triangle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/localzet/Triangle/issues"
+  },
+  "homepage": "https://github.com/localzet/Triangle",
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"

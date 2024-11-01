@@ -1,14 +1,13 @@
-# Localzet Nuxt - Многоцелевой шаблон администратора и веб-приложения Tailwind
+# Triangle-Vue - Многоцелевой шаблон веб-приложения
 
 ## ▶️ Начало работы
 
 ### Системные требования
 
-1. Современный браузер (Chrome, Edge, Firefox, ...)
-2. Установленный [Node.js LTS](https://nodejs.org/en/) _(> 18 и pnpm > 8)_
-3. Навыки [Typescript](https://github.com/microsoft/typescript) _(не должен быть установлен глобально)_
-4. Навыки [Tailwind CSS](https://tailwindcss.com/)
-5. (Рекомендуется) [VSCode](https://code.visualstudio.com/) with [Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar)
+1. [Node.js LTS](https://nodejs.org/en/) _(> 18 и pnpm > 8)_
+2. Навыки [Typescript](https://github.com/microsoft/typescript) _(не должен быть установлен глобально)_
+3. Навыки [Tailwind CSS](https://tailwindcss.com/)
+4. (Рекомендуется) [VSCode](https://code.visualstudio.com/) и [Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar)
 
 #### Установка Node.js
 
@@ -18,7 +17,7 @@
 node -v
 ```
 
-Если node не установлен на вашем компьютере, вы можете перейти на официальный сайт nodejs.org и выбрать версию в зависимости от вашей операционной системы:
+Если node ещё не установлен, вы можете скачать его с nodejs.org и выбрать версию в зависимости от вашей операционной системы:
 
 - <a href="https://nodejs.org/en/download/" target="_blank">Установите Node.js и npm на Windows, Linux или Mac OSX</a>
 - <a href="https://github.com/nvm-sh/nvm" target="_blank">Или установите Node Version Manager для быстрой установки и использования разных версий Node.js</a>

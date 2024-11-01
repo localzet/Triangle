@@ -1,8 +1,15 @@
 {
   "name": "@localzet/triangle-layer",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "./nuxt.config.ts",
+  "keywords": ["localzet", "triangle", "nuxt", "vue"],
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "Ivan Zorin",
+    "email": "creator@localzet.com",
+    "url": "https://github.com/localzet"
+  },
   "scripts": {
     "clean": "rimraf .nuxt .output node_modules"
   },
