@@ -34,8 +34,8 @@ fi
 tar zxvf ${tag_version}.tar.gz
 rm ${tag_version}.tar.gz -f
 
-dir_name=$(tar -tzf ${tag_version}.tar.gz | head -1 | sed -E 's|/.*||')
-mv ${dir_name}/* ${cur_dir}/
-rmdir ${dir_name}
+dir_name="Triangle-${tag_version#v}"
+mv ${cur_dir}/${dir_name}/* ${cur_dir}/
+rmdir ${cur_dir}/${dir_name}
 
 LOGI "Загрузка завершена..."
