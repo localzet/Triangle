@@ -19,7 +19,7 @@ function LOGI() {
 
 cur_dir=$(pwd)
 
-#[[ $EUID -ne 0 ]] && LOGE "Ошибка: Пожалуйста, запустите скрипт с root-правами! \n " && exit 1
+[[ $EUID -ne 0 ]] && LOGE "Ошибка: Пожалуйста, запустите скрипт с root-правами! \n " && exit 1
 
 apt-get update && apt install -y -q wget curl tar tzdata
 
