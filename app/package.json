@@ -1,19 +1,18 @@
 {
-  "name": "triangle-quickstarter",
+  "name": "app",
   "type": "module",
   "scripts": {
     "prepare": "nuxi prepare",
     "dev": "nuxi dev --open",
     "build": "nuxi build",
     "generate": "nuxi generate",
+    "typecheck": "nuxt typecheck",
+    "electron": "electron app",
     "clean": "rimraf .nuxt .output node_modules"
   },
   "devDependencies": {
-    "@fontsource-variable/fira-code": "^5.0.8",
-    "@fontsource-variable/inter": "^5.0.8",
-    "@fontsource-variable/karla": "^5.0.13",
-    "nuxt": "3.6.5"
-  },
-  "dependencies": {
+    "@fontsource-variable/inter": "^5.0.16",
+    "@fontsource-variable/karla": "^5.0.19",
+    "nuxt": "3.11.2"
   }
 }

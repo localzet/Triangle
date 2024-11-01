@@ -27,6 +27,6 @@ const props = withDefaults(
         {{ props.sublabel }}
       </BaseText>
     </legend>
-    <slot></slot>
+    <slot />
   </fieldset>
 </template>

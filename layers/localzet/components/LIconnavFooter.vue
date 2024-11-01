@@ -13,9 +13,7 @@ const props = withDefaults(
     display: 'expanded-lg',
   },
 )
-
-const config = useAppConfig().localzet.topnav?.footer
-
+const config = useAppConfig().localzet?.iconnav?.footer
 const year = new Date().getFullYear()
 </script>
 
@@ -26,7 +24,6 @@ const year = new Date().getFullYear()
     <NuxtLink
       v-if="config?.logoSeparator?.component"
       to="/"
-      aria-label="Go to Homepage"
       class="dark:bg-muted-900 bg-muted-50 absolute inset-x-0 -top-4 mx-auto flex h-9 w-14 items-center justify-center"
     >
       <component
@@ -46,7 +43,7 @@ const year = new Date().getFullYear()
       <NuxtLink
         v-if="config?.logo?.component"
         to="/"
-        aria-label="Go to Homepage"
+        aria-label="Go to homepage"
         class="ltablet:w-1/5 block w-full lg:w-1/5"
       >
         <component
@@ -55,7 +52,6 @@ const year = new Date().getFullYear()
         />
       </NuxtLink>
       <div v-else class="ltablet:w-1/5 block w-full lg:w-1/5" />
-
       <div
         class="ltablet:mt-0 ltablet:gap-6 mt-6 flex flex-wrap items-center justify-center gap-4 lg:mt-0 lg:gap-6"
       >
@@ -70,7 +66,6 @@ const year = new Date().getFullYear()
           {{ link.name }}
         </NuxtLink>
       </div>
-
       <div
         class="text-muted-500 dark:text-muted-400 ltablet:w-1/5 ltablet:justify-end ltablet:mt-0 mt-6 flex w-full items-center justify-center text-sm lg:mt-0 lg:w-1/5 lg:justify-end"
       >

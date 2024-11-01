@@ -4,15 +4,8 @@ import { useCollapse } from '../composables/collapse'
 const { isOpen, isMobileOpen, menuItems } = useCollapse()
 const app = useAppConfig()
 
-const startMenuItems = computed(
-  () =>
-    menuItems.value?.filter(
-      (sidebar) => !sidebar.position || sidebar.position === 'start',
-    ),
-)
-const endMenuItems = computed(
-  () => menuItems.value?.filter((sidebar) => sidebar.position === 'end'),
-)
+const startMenuItems = computed(() => menuItems.value?.filter(sidebar => !sidebar.position || sidebar.position === 'start'))
+const endMenuItems = computed(() => menuItems.value?.filter(sidebar => sidebar.position === 'end'))
 </script>
 
 <template>
@@ -28,18 +21,18 @@ const endMenuItems = computed(
     <!--Header-->
     <slot name="header">
       <component
-        v-if="app.localzet.collapse?.navigation?.header?.component"
+        v-if="app.localzet?.collapse?.navigation?.header?.component"
         :is="
           resolveComponentOrNative(
-            app.localzet.collapse?.navigation?.header?.component,
+            app.localzet?.collapse?.navigation?.header?.component,
           )
         "
       />
     </slot>
     <!--Body-->
     <div
-      class="nui-slimscroll relative flex w-full grow flex-col overflow-y-auto py-6"
-      :class="!isOpen ? 'px-4' : 'px-6'"
+      class=" relative flex w-full grow flex-col py-6"
+      :class="!isOpen ? 'px-4' : 'px-6 nui-slimscroll overflow-y-auto'"
     >
       <!--Menu-->
       <ul v-if="startMenuItems?.length" class="space-y-2">
@@ -59,6 +52,8 @@ const endMenuItems = computed(
           <NuxtLink
             v-else-if="item.to"
             :to="item.to"
+            :data-nui-tooltip="isOpen ? undefined : item.name"
+            data-nui-tooltip-position="end"
             exact-active-class="!bg-primary-500/10 dark:!bg-primary-500/20 !text-primary-500 dark:!text-primary-500"
             class="nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex cursor-pointer items-center gap-4 rounded-lg py-3 transition-colors duration-300"
             :class="!isOpen ? 'px-1 justify-center' : 'px-4'"
@@ -74,7 +69,7 @@ const endMenuItems = computed(
           <div
             v-else-if="item.divider"
             class="border-muted-200 dark:border-muted-700 my-3 h-px w-full border-t"
-          ></div>
+          />
           <button
             v-else
             class="nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex w-full cursor-pointer items-center gap-4 rounded-lg py-3 transition-colors duration-300"
@@ -91,7 +86,7 @@ const endMenuItems = computed(
           </button>
         </li>
       </ul>
-      <div class="mb-2 grow"></div>
+      <div class="mb-2 grow" />
       <!--Menu-->
       <ul v-if="endMenuItems?.length" class="space-y-2">
         <!--Menu item-->
@@ -125,7 +120,7 @@ const endMenuItems = computed(
           <div
             v-else-if="item.divider"
             class="border-muted-200 dark:border-muted-700 my-3 h-px w-full border-t"
-          ></div>
+          />
           <button
             v-else
             class="nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex w-full cursor-pointer items-center gap-4 rounded-lg py-3 transition-colors duration-300"
@@ -146,12 +141,8 @@ const endMenuItems = computed(
     <!--Footer-->
     <slot name="footer">
       <component
-        v-if="app.localzet.collapse?.navigation?.footer?.component"
-        :is="
-          resolveComponentOrNative(
-            app.localzet.collapse?.navigation?.footer?.component,
-          )
-        "
+        v-if="app.localzet?.collapse?.navigation?.footer?.component"
+        :is="resolveComponentOrNative(app.localzet?.collapse?.navigation?.footer?.component)"
       />
     </slot>
   </div>

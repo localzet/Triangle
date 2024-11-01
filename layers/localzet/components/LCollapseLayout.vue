@@ -19,23 +19,9 @@ const props = withDefaults(
 const app = useAppConfig()
 const { isOpen, isMobileOpen, toggle } = useCollapse()
 
-const collapseEnabled = computed(() => {
-  return (
-    app.localzet.collapse?.navigation?.enabled !== false &&
-    props.collapse !== false
-  )
-})
-const toolbarEnabled = computed(() => {
-  return (
-    app.localzet.collapse?.toolbar?.enabled !== false && props.toolbar !== false
-  )
-})
-const circularMenuEnabled = computed(() => {
-  return (
-    app.localzet.collapse?.circularMenu?.enabled !== false &&
-    props.circularMenu !== false
-  )
-})
+const collapseEnabled = computed(() => ((app.localzet?.collapse?.navigation?.enabled as boolean) && props.collapse !== false))
+const toolbarEnabled = computed(() => (app.localzet?.collapse?.toolbar?.enabled as boolean && props.toolbar !== false))
+const circularMenuEnabled = computed(() => (app.localzet?.collapse?.circularMenu?.enabled as boolean && props.circularMenu !== false))
 
 const mainClass = computed(() => {
   if (props.condensed) {
@@ -70,14 +56,15 @@ const mainClass = computed(() => {
       <LCollapseNavigation v-if="collapseEnabled" />
       <div
         role="button"
-        class="bg-muted-800 dark:bg-muted-900 fixed start-0 top-0 z-[59] block h-full w-full transition-opacity duration-300 lg:hidden"
+        tabindex="0"
+        class="bg-muted-800 dark:bg-muted-900 fixed start-0 top-0 z-[59] block size-full transition-opacity duration-300 lg:hidden"
         :class="
           isMobileOpen
             ? 'opacity-50 dark:opacity-75'
             : 'opacity-0 pointer-events-none'
         "
         @click="toggle"
-      ></div>
+      />
     </slot>
 
     <div :class="mainClass">
@@ -96,7 +83,7 @@ const mainClass = computed(() => {
             :collapse="props.collapse"
             :horizontal-scroll="props.horizontalScroll"
           >
-            <template #title><slot name="toolbar-title"></slot></template>
+            <template #title><slot name="toolbar-title"/></template>
           </LCollapseToolbar>
         </slot>
 

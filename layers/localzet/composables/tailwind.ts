@@ -1,4 +1,5 @@
-import { useCssVar, type MaybeRefOrGetter } from '@vueuse/core'
+import type { MaybeRefOrGetter } from 'vue'
+import { useCssVar, useMediaQuery } from '@vueuse/core'
 
 const rgbRe = /(\d+) (\d+) (\d+)/
 
@@ -11,9 +12,13 @@ function convertRGBToHex(color: string) {
 }
 
 function useCssVarWithRGB(name: MaybeRefOrGetter<string>) {
-  return computed(() => {
-    const color = useCssVar(name, document.documentElement)
+  if (import.meta.server) {
+    return computed(() => 'transparent')
+  }
 
+  const color = useCssVar(name, document.documentElement)
+
+  return computed(() => {
     if (color.value && rgbRe.test(color.value)) {
       return convertRGBToHex(color.value)
     }
@@ -28,30 +33,14 @@ function useCssVarWithRGB(name: MaybeRefOrGetter<string>) {
  * @see layers/localzet/tailwind/plugin-expose-colors.ts
  */
 export function useTailwindColors() {
-  const primary = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-primary-500')
-  const success = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-success-500')
-  const info = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-info-500')
-  const warning = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-warning-500')
-  const danger = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-danger-500')
-  const yellow = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-yellow-400')
-  const title = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-muted-600')
-  const subtitle = typeof process !== 'undefined' && process?.server
-    ? ref('transparent')
-    : useCssVarWithRGB('--color-muted-400')
+  const primary = useCssVarWithRGB('--color-primary-500')
+  const success = useCssVarWithRGB('--color-success-500')
+  const info = useCssVarWithRGB('--color-info-500')
+  const warning = useCssVarWithRGB('--color-warning-500')
+  const danger = useCssVarWithRGB('--color-danger-500')
+  const yellow = useCssVarWithRGB('--color-yellow-400')
+  const title = useCssVarWithRGB('--color-muted-600')
+  const subtitle = useCssVarWithRGB('--color-muted-400')
 
   return {
     primary,

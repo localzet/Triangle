@@ -4,7 +4,7 @@
 
 ### Системные требования
 
-1. [Node.js LTS](https://nodejs.org/en/) _(> 18 и pnpm > 8)_
+1. [Node.js LTS](https://nodejs.org/en/)
 2. Навыки [Typescript](https://github.com/microsoft/typescript) _(не должен быть установлен глобально)_
 3. Навыки [Tailwind CSS](https://tailwindcss.com/)
 4. (Рекомендуется) [VSCode](https://code.visualstudio.com/) и [Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar)

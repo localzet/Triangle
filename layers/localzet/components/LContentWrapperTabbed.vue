@@ -79,6 +79,6 @@ const activeTab = ref('tab-1')
         <slot name="tab-2"></slot>
       </div>
     </div>
-    <slot></slot>
+    <slot />
   </div>
 </template>

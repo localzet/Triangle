@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useTopnav } from '../composables/topnav'
-
+import { useIconnav } from '../composables/iconnav'
 
 const props = withDefaults(
   defineProps<{
@@ -8,12 +7,12 @@ const props = withDefaults(
     toolbar?: boolean
     circularMenu?: boolean
     display?:
-  | 'condensed'
-  | 'horizontal-scroll'
-  | 'expanded-sm'
-  | 'expanded-md'
-  | 'expanded-lg'
-  | 'expanded-xl'
+      | 'condensed'
+      | 'horizontal-scroll'
+      | 'expanded-sm'
+      | 'expanded-md'
+      | 'expanded-lg'
+      | 'expanded-xl'
   }>(),
   {
     topnav: true,
@@ -24,19 +23,28 @@ const props = withDefaults(
 )
 
 const route = useRoute()
-const config = useAppConfig().localzet?.topnav
-const { isMobileOpen } = useTopnav()
+const app = useAppConfig()
+const config = useAppConfig().localzet?.iconnav
+const { selectedMenuItem } = useIconnav()
 
-const topnavEnabled = computed(() => config?.navigation?.enabled !== false && props.topnav !== false)
-const toolbarEnabled = computed(() => config?.toolbar?.enabled !== false && props.toolbar !== false)
-const circularMenuEnabled = computed(() => config?.circularMenu?.enabled !== false && props.circularMenu !== false)
+const iconnavEnabled = computed(() => {
+  return config?.navigation?.enabled !== false
+})
+const toolbarEnabled = computed(() => {
+  return (
+    app.localzet?.collapse?.toolbar?.enabled !== false && props.toolbar !== false
+  )
+})
+const circularMenuEnabled = computed(() => {
+  return config?.circularMenu?.enabled !== false && props.circularMenu !== false
+})
 
 const mainClass = computed(() => {
   if (props.display === 'condensed') {
     return 'bg-muted-50 dark:bg-muted-900 relative min-h-screen w-full overflow-x-hidden'
   }
 
-  if (!topnavEnabled.value) {
+  if (!iconnavEnabled.value) {
     return 'bg-muted-50 dark:bg-muted-900 relative min-h-screen w-full overflow-x-hidden px-4 transition-all duration-300 xl:px-10'
   }
 
@@ -56,8 +64,8 @@ const mainClass = computed(() => {
   <div>
     <div class="dark:bg-muted-900 bg-muted-50 pb-20">
       <slot name="navigation">
-        <LTopnavNavigation
-          v-if="topnavEnabled"
+        <LIconnavNavigation
+          v-if="iconnavEnabled"
           :display="props.display"
           position="fixed"
         >
@@ -67,7 +75,9 @@ const mainClass = computed(() => {
           >
             <NuxtLink to="/" class="flex items-center justify-center">
               <component
-                :is="resolveComponentOrNative(config?.navigation.logo.component)"
+                :is="
+                  resolveComponentOrNative(config?.navigation.logo.component)
+                "
                 v-bind="config?.navigation.logo.props"
               />
             </NuxtLink>
@@ -78,22 +88,14 @@ const mainClass = computed(() => {
               weight="light"
               class="text-muted-800 hidden md:block dark:text-white"
             >
-              <slot name="title">{{ route.meta.title }}</slot>
+              <slot name="title">
+                {{ route.meta.title }}
+              </slot>
             </BaseHeading>
-            <component
-              :is="resolveComponentOrNative(config?.navigation?.header?.component)"
-              v-if="config?.navigation?.header?.component"
-              v-bind="config?.navigation?.header?.props"
-            ></component>
-            <div class="flex items-center justify-center md:hidden">
-              <button type="button" @click="isMobileOpen = true">
-                <Icon name="lucide:menu" class="text-muted-400 size-6" />
-              </button>
-            </div>
           </div>
           <template #toolbar>
             <div v-if="toolbarEnabled">
-              <div class="flex items-center justify-end gap-4 md:gap-2">
+              <div class="flex items-center justify-end gap-2">
                 <template v-for="tool of config?.toolbar?.tools">
                   <component
                     :is="resolveComponentOrNative(tool.component)"
@@ -105,12 +107,11 @@ const mainClass = computed(() => {
               </div>
             </div>
           </template>
-        </LTopnavNavigation>
+        </LIconnavNavigation>
       </slot>
 
       <div :class="mainClass">
         <div
-          class="pt-40 md:pt-36"
           :class="[
             props.display === 'condensed' && 'w-full',
             props.display === 'horizontal-scroll' &&
@@ -119,6 +120,9 @@ const mainClass = computed(() => {
             props.display === 'expanded-md' && 'mx-auto w-full max-w-6xl',
             props.display === 'expanded-lg' && 'mx-auto w-full max-w-7xl',
             props.display === 'expanded-xl' && 'mx-auto w-full',
+            selectedMenuItem?.children
+              ? 'ltablet:pt-36 pt-60 lg:pt-44'
+              : 'pt-24',
           ]"
         >
           <slot />
@@ -127,10 +131,12 @@ const mainClass = computed(() => {
 
       <LPanels />
 
-      <LTopnavCircularMenu v-if="circularMenuEnabled" />
+      <LIconnavCircularMenu v-if="circularMenuEnabled" />
     </div>
 
-
-    <LTopnavFooter v-if="config?.footer?.enabled" :display="props.display"  />
+    <LIconnavFooter
+      v-if="config?.footer?.enabled"
+      :display="props.display"
+    />
   </div>
 </template>

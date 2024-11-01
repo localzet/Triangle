@@ -7,7 +7,6 @@ const props = withDefaults(
     subsidebar?: boolean
     toolbar?: boolean
     circularMenu?: boolean
-    condensed?: boolean
     horizontalScroll?: boolean
   }>(),
   {
@@ -22,33 +21,24 @@ const app = useAppConfig()
 const { setup, currentName, isOpen, toggle } = useSidebar()
 setup()
 
-onUnmounted(() => {
-  currentName.value = ''
-  isOpen.value = undefined
-})
-
 const sidebarEnabled = computed(() => {
   return (
-    app.localzet.sidebar?.navigation?.enabled !== false && props.sidebar !== false
+    app.localzet?.sidebar?.navigation?.enabled !== false && props.sidebar !== false
   )
 })
 const toolbarEnabled = computed(() => {
   return (
-    app.localzet.sidebar?.toolbar?.enabled !== false && props.toolbar !== false
+    app.localzet?.sidebar?.toolbar?.enabled !== false && props.toolbar !== false
   )
 })
 const circularMenuEnabled = computed(() => {
   return (
-    app.localzet.sidebar?.circularMenu?.enabled !== false &&
-    props.circularMenu !== false
+    app.localzet?.sidebar?.circularMenu?.enabled !== false
+    && props.circularMenu !== false
   )
 })
 
 const wrapperClass = computed(() => {
-  if (props.condensed) {
-    return 'bg-muted-100 dark:bg-muted-900 relative min-h-screen w-full overflow-x-hidden'
-  }
-
   if (!sidebarEnabled.value) {
     return 'bg-muted-100 dark:bg-muted-900 relative min-h-screen w-full overflow-x-hidden px-4 transition-all duration-300 xl:px-10'
   }
@@ -79,41 +69,36 @@ const wrapperClass = computed(() => {
         :subsidebar="props.subsidebar"
       >
         <div
-          v-if="app.localzet.sidebar?.navigation?.logo?.component"
+          v-if="app.localzet?.sidebar?.navigation?.logo?.component"
           class="flex h-16 w-full items-center justify-center"
         >
           <slot name="logo">
             <NuxtLink to="/" class="flex items-center justify-center">
               <component
-                :is="
-                  resolveComponentOrNative(
-                    app.localzet.sidebar?.navigation.logo.component,
-                  )
-                "
-                v-bind="app.localzet.sidebar?.navigation.logo.props"
-              ></component>
+                :is="resolveComponentOrNative(app.localzet?.sidebar?.navigation.logo.component)"
+                v-bind="app.localzet?.sidebar?.navigation.logo.props"
+              />
             </NuxtLink>
           </slot>
         </div>
       </LSidebarNavigation>
       <div
         role="button"
-        class="bg-muted-800 dark:bg-muted-900 fixed start-0 top-0 z-[59] block h-full w-full transition-opacity duration-300 lg:hidden"
+        tabindex="0"
+        class="bg-muted-800 dark:bg-muted-900 fixed start-0 top-0 z-[59] block size-full transition-opacity duration-300 lg:hidden"
         :class="
           isOpen
             ? 'opacity-50 dark:opacity-75'
             : 'opacity-0 pointer-events-none'
         "
         @click="toggle"
-      ></div>
+      />
     </slot>
 
     <div :class="wrapperClass">
       <div
         :class="[
-          props.condensed && !props.horizontalScroll && 'w-full',
-          !props.condensed && props.horizontalScroll && 'mx-auto w-full',
-          !props.condensed &&
+          props.horizontalScroll && 'mx-auto w-full',
             !props.horizontalScroll &&
             'mx-auto w-full max-w-7xl',
         ]"
@@ -124,7 +109,9 @@ const wrapperClass = computed(() => {
             :sidebar="props.sidebar"
             :horizontal-scroll="props.horizontalScroll"
           >
-            <template #title><slot name="toolbar-title"></slot></template>
+            <template #title>
+              <slot name="toolbar-title" />
+            </template>
           </LSidebarToolbar>
         </slot>
 

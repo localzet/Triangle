@@ -27,7 +27,7 @@ const codePage = [
   `<` + `/script>`,
   ``,
   `<template>`,
-  `  <div>Hello Localzet!</div>`,
+  `  <div>Hello Triangle!</div>`,
   `</template>`,
 ].join('\n')
 
@@ -60,17 +60,17 @@ const codeTailwind = [
       </BaseHeading>
       <LocalzetLogoText class="text-primary-500 mx-auto h-8" />
     </div>
-    <BaseCard shape="curved" class="dark:!bg-muted-900 mb-4 p-8 sm:mb-6">
+    <BaseCard rounded="lg" class="dark:!bg-muted-900 mb-4 p-8 sm:mb-6">
       <div
-        class="nui-mask nui-mask-hexed absolute inset-x-0 -top-10 mx-auto mb-2 flex h-[84px] w-[84px] shrink-0 items-center justify-center"
+        class="nui-mask nui-mask-hexed absolute inset-x-0 -top-10 mx-auto mb-2 flex size-[84px] shrink-0 items-center justify-center"
       >
         <div
-          class="animate-spin-slow from-primary-100 to-primary-500 dark:from-primary-800 absolute inset-0 flex h-full w-full items-center justify-center bg-gradient-to-tr blur-sm transition-all duration-200"
+          class="animate-spin-slow from-primary-100 to-primary-500 dark:from-primary-800 absolute inset-0 flex size-full items-center justify-center bg-gradient-to-tr blur-sm transition-all duration-200"
         ></div>
         <div
-          class="nui-mask nui-mask-hexed dark:bg-muted-800 flex h-[80px] w-[80px] items-center justify-center bg-white"
+          class="nui-mask nui-mask-hexed dark:bg-muted-800 flex size-[80px] items-center justify-center bg-white"
         >
-          <Icon name="ph:sparkle-duotone" class="text-primary-500 h-8 w-8" />
+          <Icon name="ph:sparkle-duotone" class="text-primary-500 size-8" />
         </div>
       </div>
       <div class="space-y-2 pt-6 text-center">
@@ -81,7 +81,7 @@ const codeTailwind = [
           size="sm"
           class="text-muted-500 dark:text-muted-400 mx-auto max-w-2xl"
         >
-          Welcome to the Localzet app starter. You are here because you ran the
+          Welcome to the Triangle app starter. You are here because you ran the
           <code
             class="bg-muted-100 dark:bg-muted-700/70 text-primary-500 rounded p-1 font-mono"
           >
@@ -94,13 +94,13 @@ const codeTailwind = [
     </BaseCard>
 
     <div class="flex flex-col gap-6">
-      <BaseCard class="dark:!bg-muted-900 p-6" shape="rounded">
+      <BaseCard class="dark:!bg-muted-900 p-6" rounded="sm">
         <BaseProse class="prose-p:my-0 max-w-full">
           <div>
             <div class="flex gap-2 sm:items-center">
               <Icon
                 name="ph:number-circle-one-duotone"
-                class="text-primary-500 h-8 w-8 shrink-0"
+                class="text-primary-500 size-8 shrink-0"
               />
               <p>
                 Enable a layout in
@@ -111,13 +111,13 @@ const codeTailwind = [
           </div>
         </BaseProse>
       </BaseCard>
-      <BaseCard class="dark:!bg-muted-900 p-6" shape="rounded">
+      <BaseCard class="dark:!bg-muted-900 p-6" rounded="sm">
         <BaseProse class="prose-p:my-0 max-w-full">
           <div>
             <div class="flex gap-2 sm:items-center">
               <Icon
                 name="ph:number-circle-two-duotone"
-                class="text-primary-500 h-8 w-8 shrink-0"
+                class="text-primary-500 size-8 shrink-0"
               />
               <p>
                 Set default layout in
@@ -128,13 +128,13 @@ const codeTailwind = [
           </div>
         </BaseProse>
       </BaseCard>
-      <BaseCard class="dark:!bg-muted-900 p-6" shape="rounded">
+      <BaseCard class="dark:!bg-muted-900 p-6" rounded="sm">
         <BaseProse class="prose-p:my-0 max-w-full">
           <div>
             <div class="flex gap-2 sm:items-center">
               <Icon
                 name="ph:number-circle-three-duotone"
-                class="text-primary-500 h-8 w-8 shrink-0"
+                class="text-primary-500 size-8 shrink-0"
               />
               <p>
                 Define your app settings in
@@ -146,13 +146,13 @@ const codeTailwind = [
           </div>
         </BaseProse>
       </BaseCard>
-      <BaseCard class="dark:!bg-muted-900 p-6" shape="rounded">
+      <BaseCard class="dark:!bg-muted-900 p-6" rounded="sm">
         <BaseProse class="prose-p:my-0 max-w-full">
           <div>
             <div class="flex gap-2 sm:items-center">
               <Icon
                 name="ph:number-circle-four-duotone"
-                class="text-primary-500 h-8 w-8 shrink-0"
+                class="text-primary-500 size-8 shrink-0"
               />
               <p>
                 Create your first page
@@ -163,13 +163,13 @@ const codeTailwind = [
           </div>
         </BaseProse>
       </BaseCard>
-      <BaseCard class="dark:!bg-muted-900 p-6" shape="rounded">
+      <BaseCard class="dark:!bg-muted-900 p-6" rounded="sm">
         <BaseProse class="prose-p:my-0 max-w-full">
           <div>
             <div class="flex gap-2 sm:items-center">
               <Icon
                 name="ph:number-circle-five-duotone"
-                class="text-primary-500 h-8 w-8 shrink-0"
+                class="text-primary-500 size-8 shrink-0"
               />
               <p>
                 Customize tailwind settings in

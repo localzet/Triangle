@@ -67,13 +67,13 @@ export function useCollapse() {
 
   const menuItems = computed(() => {
     if (
-      app.localzet.collapse?.navigation?.enabled === false ||
-      app.localzet.collapse?.navigation?.items?.length === 0
+      !(app.localzet?.collapse?.navigation?.enabled as boolean)
+      || app.localzet?.collapse?.navigation?.items?.length === 0
     ) {
       return []
     }
-    return app.localzet.collapse?.navigation?.items?.map(
-      (navigation) =>
+    return app.localzet?.collapse?.navigation?.items?.map(
+      navigation =>
         <LocalzetCollapseResolvedConfig>{
           ...navigation,
           position: navigation.position ?? 'start',
@@ -85,11 +85,11 @@ export function useCollapse() {
   const isMobileOpen = useState('collapse-mobile-open', () => false)
 
   const header = computed(() => {
-    return app.localzet.collapse?.navigation?.header
+    return app.localzet?.collapse?.navigation?.header
   })
 
   const footer = computed(() => {
-    return app.localzet.collapse?.navigation?.footer
+    return app.localzet?.collapse?.navigation?.footer
   })
 
   function toggle() {
@@ -102,7 +102,7 @@ export function useCollapse() {
     }
   }
 
-  if (typeof process !== 'undefined' &&process?.client) {
+  if (import.meta.client) {
     const route = useRoute()
     const { lg, xl } = useTailwindBreakpoints()
     watch(lg, (isLg) => {
