@@ -35,7 +35,11 @@ tar zxvf ${tag_version}.tar.gz
 rm ${tag_version}.tar.gz -f
 
 dir_name="Triangle-${tag_version#v}"
+shopt -s dotglob
 mv ${cur_dir}/${dir_name}/* ${cur_dir}/
+shopt -u dotglob
 rm ${cur_dir}/${dir_name} -R
+
+pnpm install
 
 LOGI "Загрузка завершена..."
