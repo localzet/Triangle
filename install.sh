@@ -36,6 +36,6 @@ rm ${tag_version}.tar.gz -f
 
 dir_name="Triangle-${tag_version#v}"
 mv ${cur_dir}/${dir_name}/* ${cur_dir}/
-rmdir ${cur_dir}/${dir_name}
+rm ${cur_dir}/${dir_name} -R
 
 LOGI "Загрузка завершена..."
