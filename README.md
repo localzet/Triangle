@@ -38,13 +38,11 @@ corepack prepare pnpm@latest --activate
 Для Windows:
 ```powershell
 Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://raw.githubusercontent.com/localzet/Triangle/master/install.ps1')))
-pnpm install
 ```
 
 Для Linux:
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/localzet/Triangle/master/install.sh)
-pnpm install
 ```
 
 > **Примечание:** Это установит зависимости из всех пакетов, которые соответствуют `pnpm-workspace.yaml`. Если вам нужно очистить все `node_modules`, вы можете использовать команду `pnpm clear:all`.
