@@ -1,3 +1,6 @@
+# Установка кодировки консоли
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
 # Цвета для логирования
 $red = [char]27 + "[0;31m"
 $green = [char]27 + "[0;32m"
@@ -36,7 +39,13 @@ tar -zxvf "$cur_dir\$tag_version.tar.gz"
 Remove-Item "$cur_dir\$tag_version.tar.gz" -Force
 
 $dir_name = "Triangle-$($tag_version.Substring(1))"
-Get-ChildItem "$cur_dir\$dir_name\*" -Recurse | Move-Item -Destination $cur_dir
+Get-ChildItem "$cur_dir\$dir_name\*" -Recurse | ForEach-Object {
+    $dest = Join-Path -Path $cur_dir -ChildPath $_.Name
+    if (Test-Path $dest) {
+        Remove-Item -Path $dest -Force
+    }
+    Move-Item -Path $_.FullName -Destination $cur_dir
+}
 Remove-Item "$cur_dir\$dir_name" -Recurse
 
 pnpm install
