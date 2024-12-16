@@ -27,16 +27,23 @@ if (-Not $tag_version) {
     exit 1
 }
 
-Write-Host "Получена версия Triangle: $tag_version, загрузка..."
-Invoke-WebRequest -Uri "https://github.com/localzet/Triangle/archive/refs/tags/$tag_version.tar.gz" -OutFile "$cur_dir\$tag_version.tar.gz" -UseBasicParsing
+LOGI "Получена версия Triangle: $tag_version, загрузка..."
 
-if ($LASTEXITCODE -ne 0) {
-    LOGE "Ошибка загрузки Triangle, пожалуйста, убедитесь, что ваш сервер имеет доступ к Github"
+$url = "https://github.com/localzet/Triangle/archive/refs/tags/$tag_version.tar.gz"
+$output = "$cur_dir\$tag_version.tar.gz"
+
+try {
+    $webClient = New-Object System.Net.WebClient
+    $webClient.Encoding = [System.Text.Encoding]::UTF8
+    $webClient.DownloadFile($url, $output)
+    LOGI "Файл успешно загружен в $output"
+} catch {
+    LOGE "Ошибка загрузки файла: $($_.Exception.Message)"
     exit 1
 }
 
-tar -zxvf "$cur_dir\$tag_version.tar.gz"
-Remove-Item "$cur_dir\$tag_version.tar.gz" -Force
+tar -zxvf "$output"
+Remove-Item "$output" -Force
 
 $dir_name = "Triangle-$($tag_version.Substring(1))"
 Get-ChildItem "$cur_dir\$dir_name\*" -Recurse | ForEach-Object {
