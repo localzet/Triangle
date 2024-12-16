@@ -35,11 +35,13 @@ corepack prepare pnpm@latest --activate
 
 Чтобы загрузить шаблон и начать установку зависимостей проекта, выполните:
 
+Для Windows:
 ```powershell
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/localzet/Triangle/master/install.sh'))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/localzet/Triangle/master/install.ps1'))
 pnpm install
 ```
 
+Для Linux:
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/localzet/Triangle/master/install.sh)
 pnpm install
