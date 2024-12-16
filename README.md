@@ -37,7 +37,7 @@ corepack prepare pnpm@latest --activate
 
 Для Windows:
 ```powershell
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/localzet/Triangle/master/install.ps1'))
+Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://raw.githubusercontent.com/localzet/Triangle/master/install.ps1')))
 pnpm install
 ```
 
