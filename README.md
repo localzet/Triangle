@@ -39,6 +39,7 @@ corepack prepare pnpm@latest --activate
 ```powershell
 Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://raw.githubusercontent.com/localzet/Triangle/master/install.ps1')))
 ```
+> Если возникает ошибка "Невозможно загрузить файл <..>, так как выполнение сценариев отключено в этой систем" - выполните ```Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force```
 
 Для Linux:
 ```bash
