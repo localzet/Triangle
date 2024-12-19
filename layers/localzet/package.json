@@ -19,7 +19,7 @@
     "@shuriken-ui/nuxt": "3.1.5",
     "klona": "^2.0.6",
     "magic-string": "0.30.9",
-    "nuxt": "^3.11.2"
+    "nuxt": "^3.12.4"
   },
   "devDependencies": {
     "@nuxt/kit": "^3.11.2",
