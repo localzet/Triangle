@@ -18,8 +18,13 @@ export default defineNuxtSchema({
               name: { type: 'string' },
               position: {
                 type: 'string',
-                tsType: "'left' | 'right'",
+                tsType: '\'left\' | \'right\'',
                 $default: 'left',
+              },
+              size: {
+                type: 'string',
+                tsType: '\'sm\' | \'md\'',
+                $default: 'sm',
               },
               component: { type: 'string' },
               props: { type: 'object' },
@@ -85,7 +90,7 @@ export default defineNuxtSchema({
                   name: { type: 'string' },
                   to: { type: 'string' },
                   activePath: { type: 'string' },
-                  position: { type: 'string', tsType: "'start' | 'end'" },
+                  position: { type: 'string', tsType: '\'start\' | \'end\'' },
                   divider: { type: 'boolean' },
                   icon: {
                     type: 'object',
@@ -104,7 +109,7 @@ export default defineNuxtSchema({
                         name: { type: 'string' },
                         to: { type: 'string' },
                         activePath: { type: 'string' },
-                        position: { type: 'string', tsType: "'start' | 'end'" },
+                        position: { type: 'string', tsType: '\'start\' | \'end\'' },
                         icon: {
                           type: 'object',
                           required: ['name'],
@@ -125,6 +130,137 @@ export default defineNuxtSchema({
                     },
                   },
                   click: { type: 'function' },
+                },
+              },
+            },
+          },
+        },
+      },
+      iconnav: {
+        circularMenu: {
+          enabled: true,
+          tools: {
+            $schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                required: ['name'],
+                properties: {
+                  component: { type: 'string' },
+                  props: { type: 'object' },
+                },
+              },
+            },
+          },
+        },
+        toolbar: {
+          enabled: true,
+          showTitle: true,
+          tools: {
+            $schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                required: ['name'],
+                properties: {
+                  component: { type: 'string' },
+                  props: { type: 'object' },
+                },
+              },
+            },
+          },
+        },
+        navigation: {
+          enabled: true,
+          logo: {
+            component: 'LocalzetLogo',
+            props: {},
+          },
+          items: {
+            $schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                required: ['name'],
+                properties: {
+                  name: { type: 'string' },
+                  to: { type: 'string' },
+                  activePath: { type: 'string' },
+                  position: { type: 'string', tsType: '\'start\' | \'end\'' },
+                  divider: { type: 'boolean' },
+                  icon: {
+                    type: 'object',
+                    required: ['name'],
+                    properties: {
+                      name: { type: 'string' },
+                      class: { type: 'string' },
+                    },
+                  },
+                  children: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                      required: ['name'],
+                      properties: {
+                        name: { type: 'string' },
+                        to: { type: 'string' },
+                        activePath: { type: 'string' },
+                        position: { type: 'string', tsType: '\'start\' | \'end\'' },
+                        icon: {
+                          type: 'object',
+                          required: ['name'],
+                          properties: {
+                            name: { type: 'string' },
+                            class: { type: 'string' },
+                          },
+                        },
+                      },
+                    },
+                  },
+                  component: {
+                    type: 'object',
+                    required: ['name'],
+                    properties: {
+                      component: { type: 'string' },
+                      props: { type: 'object' },
+                    },
+                  },
+                  click: { type: 'function' },
+                },
+              },
+            },
+          },
+        },
+        footer: {
+          enabled: true,
+
+          logoSeparator: {
+            component: 'LocalzetLogo',
+            props: {},
+          },
+
+          logo: {
+            component: 'LocalzetLogoText',
+            props: {},
+          },
+
+          copyright: {
+            name: '',
+            to: '',
+            since: '',
+          },
+
+          links: {
+            $schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                required: ['name', 'to'],
+                properties: {
+                  name: { type: 'string' },
+                  to: { type: 'string' },
+                  rel: { type: 'string' },
+                  target: { type: 'string' },
                 },
               },
             },
@@ -186,7 +322,7 @@ export default defineNuxtSchema({
                   activePath: { type: 'string' },
                   position: {
                     type: 'string',
-                    tsType: "'start' | 'end'",
+                    tsType: '\'start\' | \'end\'',
                     $default: 'start',
                   },
 
@@ -272,7 +408,7 @@ export default defineNuxtSchema({
                   name: { type: 'string' },
                   to: { type: 'string' },
                   activePath: { type: 'string' },
-                  position: { type: 'string', tsType: "'start' | 'end'" },
+                  position: { type: 'string', tsType: '\'start\' | \'end\'' },
                   divider: { type: 'boolean' },
                   icon: {
                     type: 'object',

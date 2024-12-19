@@ -1,11 +1,13 @@
 {
-  "name": "triangle-quickstarter",
+  "name": "app",
   "type": "module",
   "scripts": {
     "prepare": "nuxi prepare",
     "dev": "nuxi dev --open",
     "build": "nuxi build",
     "generate": "nuxi generate",
+    "typecheck": "nuxt typecheck",
+    "electron": "electron app",
     "clean": "rimraf .nuxt .output node_modules"
   },
   "devDependencies": {

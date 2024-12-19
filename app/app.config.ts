@@ -10,6 +10,6 @@
 
 export default defineAppConfig({
   localzet: {
-    title: 'Localzet',
+    title: 'Triangle Quick Starter',
   },
 })

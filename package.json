@@ -1,60 +1,71 @@
 {
-  "private": false,
   "name": "@localzet/triangle",
-  "version": "0.0.0",
+  "version": "1.5.0",
   "type": "module",
   "main": "./nuxt.config.ts",
+  "packageManager": "pnpm@8.14.0",
+  "keywords": [
+    "localzet",
+    "triangle",
+    "nuxt",
+    "vue"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "Ivan Zorin",
+    "email": "creator@localzet.com",
+    "url": "https://github.com/localzet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/localzet/Triangle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/localzet/Triangle/issues"
+  },
+  "homepage": "https://github.com/localzet/Triangle",
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
   },
+  "workspaces": [
+    "app",
+    "layers/*"
+  ],
   "scripts": {
-    "dev": "nuxi dev app --open --host localhost",
-    "build": "nuxi build app --prerender",
-    "generate": "nuxi generate app",
-    "electron": "electron app",
+    "dev": "pnpm --filter=app dev",
+    "build": "pnpm --filter=app build",
+    "generate": "pnpm --filter=app generate",
+    "electron": "pnpm --filter=app electron",
     "clean:all": "pnpm -r clean && rimraf .nuxt .output node_modules",
     "test": "run-p test:*",
-    "test:tsc": "nuxi typecheck app",
-    "test:lint": "run-s lint:eslint lint:prettier",
-    "lint": "run-s lint:eslint:fix lint:eslint:fix-demo lint:prettier:fix",
-    "lint:prettier": "prettier --check \"./**/*.(ts|vue|css|md)\"",
-    "lint:prettier:fix": "prettier --write \"./**/*.(ts|vue|css|md)\"",
-    "lint:eslint": "eslint -c .eslintrc.cjs --ext .vue,.ts .",
-    "lint:eslint:fix": "eslint -c .eslintrc.cjs --fix --ext .vue,.ts .",
-    "lint:eslint:fix-demo": "eslint -c layers/documentation/examples/.eslintrc.cjs --fix --ext .vue layers/documentation/examples"
+    "test:tsc": "pnpm --filter=app typecheck",
+    "test:lint": "eslint .",
+    "lint": "run-s lint:eslint:fix",
+    "lint:eslint:fix": "eslint --fix ."
   },
   "devDependencies": {
-    "@iconify/json": "2.2.217",
-    "@types/fs-extra": "11.0.4",
-    "@typescript-eslint/eslint-plugin": "7.12.0",
-    "eslint": "9.4.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-prettier-vue": "5.0.0",
-    "eslint-plugin-tailwindcss": "3.17.3",
-    "eslint-plugin-vue": "9.26.0",
-    "eslint-plugin-vuejs-accessibility": "2.3.0",
-    "esno": "4.7.0",
-    "fs-extra": "11.2.0",
-    "lint-staged": "15.2.5",
+    "@stylistic/eslint-plugin": "^1.5.4",
+    "@typescript-eslint/eslint-plugin": "7.6.0",
+    "eslint": "8.57.0",
+    "eslint-plugin-sonarjs": "^0.25.1",
+    "eslint-plugin-tailwindcss": "3.15.1",
+    "eslint-plugin-vue": "9.24.1",
+    "eslint-plugin-vuejs-accessibility": "2.2.1",
+    "lint-staged": "15.2.2",
     "npm-run-all": "4.1.5",
-    "prettier": "3.3.1",
-    "rimraf": "5.0.7",
+    "rimraf": "5.0.5",
     "std-env": "3.7.0",
-    "tailwindcss": "3.4.4",
+    "tailwindcss": "3.4.3",
     "typescript": "5.4.5",
-    "vue-tsc": "2.0.21"
+    "vue-tsc": "2.0.12"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.(ts|vue)": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.md": [
-      "prettier --write"
+      "eslint --fix"
     ]
   },
   "pnpm": {
@@ -68,5 +79,7 @@
       ]
     }
   },
-  "packageManager": "pnpm@9.1.0+sha512.67f5879916a9293e5cf059c23853d571beaf4f753c707f40cb22bed5fb1578c6aad3b6c4107ccb3ba0b35be003eb621a16471ac836c87beb53f9d54bb4612724"
+  "publishConfig": {
+    "access": "public"
+  }
 }

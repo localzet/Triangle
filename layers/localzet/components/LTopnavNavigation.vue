@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { useTopnav } from '../composables/topnav'
-import type { LayoutDisplay } from './LTopnavLayout.vue'
 
 const props = withDefaults(
   defineProps<{
-    display: LayoutDisplay
+    display:
+      | 'condensed'
+      | 'horizontal-scroll'
+      | 'expanded-sm'
+      | 'expanded-md'
+      | 'expanded-lg'
+      | 'expanded-xl'
     position: 'fixed' | 'absolute'
   }>(),
   {
@@ -42,7 +47,7 @@ const app = useAppConfig()
         class="flex w-full flex-col items-center justify-between md:h-16 md:flex-row"
       >
         <div class="w-full grow md:w-auto">
-          <slot></slot>
+          <slot />
         </div>
         <div
           class="dark:bg-muted-800 fixed start-0 top-0 z-20 w-full grow items-center bg-white p-3 md:static md:z-0 md:block md:w-auto md:bg-transparent md:p-0"
@@ -51,7 +56,7 @@ const app = useAppConfig()
           <div class="me-auto block md:hidden">
             <BaseButtonClose
               color="muted"
-              shape="full"
+              rounded="full"
               @click="isMobileOpen = false"
             />
           </div>

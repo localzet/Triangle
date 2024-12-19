@@ -45,19 +45,19 @@ export function useSidebar() {
 
   const sidebars = computed(() => {
     if (
-      app.localzet.sidebar?.navigation?.enabled === false ||
-      app.localzet.sidebar?.navigation?.items?.length === 0
+      !(app.localzet?.sidebar?.navigation?.enabled as boolean)
+      || app.localzet?.sidebar?.navigation?.items?.length === 0
     ) {
       return []
     }
-    return app.localzet.sidebar?.navigation?.items
+    return app.localzet?.sidebar?.navigation?.items
   })
 
   const currentName = useState('sidebar-name', () => '')
   const isOpen = useState<boolean | undefined>('sidebar-open', () => undefined)
 
   const hasSubsidebar = computed(() => {
-    return sidebars.value?.some((sidebar) => sidebar.subsidebar?.component)
+    return sidebars.value?.some(sidebar => sidebar.subsidebar?.component)
   })
 
   const current = computed(() => {
@@ -95,17 +95,17 @@ export function useSidebar() {
   }
 
   function detect() {
-    if (!app.localzet.sidebar?.navigation?.startOpen) {
+    if (!app.localzet?.sidebar?.navigation?.startOpen) {
       isOpen.value = false
       return
     }
 
     const item = sidebars.value?.find(
-      (bar) => bar?.activePath && route.fullPath.startsWith(bar.activePath),
+      bar => bar?.activePath && route.fullPath.startsWith(bar.activePath),
     )
     if (item) {
       currentName.value = item.title
-      if (!(typeof process !== 'undefined' && process?.client)) {
+      if (!import.meta.client) {
         isOpen.value = Boolean(currentName.value)
       } else {
         const isXl = useTailwindBreakpoints().xl.value
@@ -117,7 +117,7 @@ export function useSidebar() {
 
   function setup() {
     // Detect sidebar item on server page load
-    if (!(typeof process !== 'undefined' && process?.client)) {
+    if (!import.meta.client) {
       detect()
       return
     }
@@ -128,7 +128,6 @@ export function useSidebar() {
     const removeHook = nuxtApp.hook('page:finish', (e) => {
       detect()
       removeHook()
-      return
     })
 
     // register a watcher to close sidebar when screen become extra large
@@ -155,6 +154,10 @@ export function useSidebar() {
         }
       },
     )
+    onUnmounted(() => {
+      currentName.value = ''
+      isOpen.value = undefined
+    })
   }
 
   return {

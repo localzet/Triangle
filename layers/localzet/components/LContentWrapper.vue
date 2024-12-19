@@ -23,6 +23,6 @@ const props = withDefaults(
         <slot name="right"></slot>
       </div>
     </div>
-    <slot></slot>
+    <slot />
   </div>
 </template>

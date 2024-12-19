@@ -1,4 +1,4 @@
-export default defineAppConfig({
+export default {
   localzet: {
     title: 'Localzet',
     error: {
@@ -30,6 +30,45 @@ export default defineAppConfig({
         showTitle: false,
         showNavBurger: false,
         tools: [],
+      },
+    },
+    iconnav: {
+      navigation: {
+        enabled: true,
+        logo: {
+          component: 'LocalzetLogo',
+          props: { class: 'text-primary-500 h-10 w-10' },
+        },
+        items: [],
+      },
+      circularMenu: {
+        enabled: true,
+        tools: [],
+      },
+      toolbar: {
+        enabled: true,
+        showTitle: false,
+        tools: [],
+      },
+      footer: {
+        enabled: false,
+        logoSeparator: {
+          component: 'LocalzetLogo',
+          props: { class: 'text-primary-500 h-7 w-7' },
+        },
+        logo: {
+          component: 'LocalzetLogoText',
+          props: {
+            class:
+              'text-muted-300 ltablet:mx-0 mx-auto h-4 transition-all duration-200 lg:mx-0',
+          },
+        },
+        copyright: {
+          name: '',
+          to: '',
+          since: '',
+        },
+        links: [],
       },
     },
     sidebar: {
@@ -107,10 +146,10 @@ export default defineAppConfig({
         'pointer-events-none',
         'p-4',
         'flex',
-        'flex-col-reverse',
+        'flex-col',
         'overflow-hidden',
         'z-[200]',
-        'items-center',
+        'items-start',
         'gap-2',
         'space-y-3',
       ],
@@ -135,4 +174,4 @@ export default defineAppConfig({
       },
     },
   },
-})
+}

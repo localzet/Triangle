@@ -1,6 +1,6 @@
 import type { RouteLocationRaw } from 'vue-router'
 
-export interface LocalzetTopnavResolvedConfig {
+export interface LIconnavResolvedConfig {
   name: string
   divider?: boolean
   icon: {
@@ -25,7 +25,7 @@ export interface LocalzetTopnavResolvedConfig {
  * ```ts
  * export default defineAppConfig({
  *   localzet: {
- *     topnav: {
+ *     iconnav: {
  *       items: {
  *           name: 'Dashboards',
  *
@@ -54,26 +54,24 @@ export interface LocalzetTopnavResolvedConfig {
  * })
  * ```
  */
-export function useTopnav() {
+export function useIconnav() {
   const route = useRoute()
   const app = useAppConfig()
 
   const menuItems = computed(() => {
     if (
-      !(app.localzet?.topnav?.navigation?.enabled as boolean)
-      || app.localzet?.topnav?.navigation?.items?.length === 0
+      app.localzet.iconnav?.navigation?.enabled === false
+      || app.localzet.iconnav?.navigation?.items?.length === 0
     ) {
       return []
     }
-    return app.localzet?.topnav?.navigation?.items?.map(
+    return app.localzet.iconnav?.navigation?.items?.map(
       navigation =>
-        <LocalzetTopnavResolvedConfig>{
+        <LIconnavResolvedConfig>{
           ...navigation,
         },
     )
   })
-
-  const isMobileOpen = useState('collapse-open', () => false)
 
   const activeMenuItem = computed(() => {
     return menuItems.value?.find((item) => {
@@ -87,7 +85,7 @@ export function useTopnav() {
     })
   })
   const selectedMenuItem = useState(
-    'topnav-selected-menu-item',
+    'iconnav-selected-menu-item',
     () => activeMenuItem.value,
   )
   watch(activeMenuItem, (item) => {
@@ -96,17 +94,16 @@ export function useTopnav() {
 
   if (import.meta.client) {
     const { lg, xl } = useTailwindBreakpoints()
-    /*watch(xl, (isXl) => {
+    /* watch(xl, (isXl) => {
       if (!isXl) {
         isOpen.value = false
       }
-    })*/
+    }) */
   }
 
   return {
     menuItems,
     activeMenuItem,
     selectedMenuItem,
-    isMobileOpen,
   }
 }
